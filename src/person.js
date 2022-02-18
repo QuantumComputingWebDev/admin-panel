@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-    List, Datagrid, TextField, ReferenceField, EditButton, Edit, SimpleForm, ReferenceInput, SelectInput, TextInput, Create, SelectField
+    List, Datagrid, TextField, ReferenceField, EditButton, Edit, SimpleForm, ReferenceInput, SelectInput, TextInput, Create, SelectField, DeleteButton
 } from 'react-admin';
 
 export const PersonList = props => (
@@ -12,6 +12,7 @@ export const PersonList = props => (
             <TextField source="about" />
             <SelectField source="position" choices={[{ id: 0, name: 'Speaker' }, { id: 1, name: 'Staff' }]} />
             <EditButton />
+            <DeleteButton />
         </Datagrid>
     </List>
 );
