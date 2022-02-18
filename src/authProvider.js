@@ -6,17 +6,20 @@ const httpClient = fetchUtils.fetchJson;
 const cookies = new Cookies();
 
 export default {
-    login: ({ username, password }) => {
-        fetch(`${apiUrl}/auth/login`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({username, password})}).
-        then((response) => {
-            cookies.set('auth', response);
-            localStorage.setItem('username', username);
-            console.log(response)
-            return Promise.resolve();
-        }).catch((err) => {
-            console.log(err)
-            return Promise.reject(err);
-        })
+    login: async ({ username, password }) => {
+        return await fetch(`${apiUrl}/auth/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) }).
+            then(async (response) => {
+                if (response.status != 200) throw new Error('invalid username or password')
+                const data = await response.text();
+                cookies.set('auth', data);
+                localStorage.setItem('username', username);
+                localStorage.setItem('auth', data)
+                console.log(response)
+                return Promise.resolve();
+            }).catch((err) => {
+                console.log(err)
+                return Promise.reject(err);
+            })
     },
     logout: () => {
         localStorage.removeItem('username');

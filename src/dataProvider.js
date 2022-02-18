@@ -1,6 +1,6 @@
 import { fetchUtils } from 'react-admin';
 
-const apiUrl = 'localhost:8888/api/v1/';
+const apiUrl = 'http://localhost:8888/api/v1';
 const httpClient = fetchUtils.fetchJson;
 
 export default {
@@ -9,6 +9,7 @@ export default {
 
         return httpClient(url).then(({ headers, json }) => ({
             data: json,
+            total: json.length
         }));
     },
 
