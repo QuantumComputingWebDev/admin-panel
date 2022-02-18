@@ -1,7 +1,7 @@
 import { fetchUtils } from 'react-admin';
 import Cookies from 'universal-cookie';
 
-const apiUrl = 'http://localhost:8888/api/v1';
+const apiUrl = `${window.location.origin}/api/v1`;
 const httpClient = fetchUtils.fetchJson;
 const cookies = new Cookies();
 
