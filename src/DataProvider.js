@@ -53,6 +53,7 @@ const defaultDataProvider = {
 const DataProvider = new Proxy(defaultDataProvider, {
     get: function(target, name, receiver) {
         return (resource, params)=>{
+            console.log("DATA PROVIDER ", name, resource, params)
             if(resource === "staff")
                 return  (staffDataProvider[name] || defaultDataProvider[name])("person", params)
             if(resource === "speaker")

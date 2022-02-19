@@ -10,7 +10,9 @@ import {
     SelectInput,
     SimpleForm,
     TextField,
-    TextInput
+    TextInput,
+    ImageField,
+    ImageInput
 } from 'react-admin';
 import PersonIcon from "@material-ui/icons/Person";
 
@@ -25,7 +27,7 @@ const Staff = {
                 <TextField source="id" />
                 <TextField source="name" />
                 <TextField source="title" />
-                {/*src*/}
+                <ImageField source="src" title="name" />
                 <EditButton />
                 <DeleteButton />
             </Datagrid>
@@ -36,6 +38,9 @@ const Staff = {
             <SimpleForm>
                 <TextInput source="name" />
                 <TextInput source="title" />
+                <ImageInput source="src" label="profile picture" accept="image/*">
+                    <ImageField source="src" title="title" />
+                </ImageInput>
             </SimpleForm>
         </Edit>
     ),
