@@ -1,17 +1,17 @@
 import * as React from "react";
 import { Admin, Resource, ListGuesser, EditGuesser } from 'react-admin';
-import { PersonEdit, PersonCreate, PersonList } from "./person";
-import { EventList, EventTitle, EventCreate, EventEdit } from "./event";
+import Speaker from "./speaker/speaker";
+import Staff from "./staff/staff";
+import Event from "./event/event";
+
 import Dashboard from './dashboard'
 import AuthProvider from './authProvider'
-import PersonIcon from '@material-ui/icons/Person';
-import EventIcon from '@material-ui/icons/Event';
-import DataProvider from './dataProvider'
+import DataProvider from './DataProvider'
 
 const App = () => <Admin dashboard={Dashboard} authProvider={AuthProvider} dataProvider={DataProvider}>
-  <Resource name="person" list={PersonList} icon={PersonIcon} edit={PersonEdit} create={PersonCreate} />
-  {/* <Resource name="event" list={PersonList} icon={CollectionsIcon} edit={PersonEdit} create={PersonCreate} /> */}
-  <Resource name="event" list={EventList} icon={EventIcon} edit={EventEdit} create={EventCreate} />
+  <Resource name="staff" {...Staff} />
+  <Resource name="speaker" {...Speaker} />
+  <Resource name="event" {...Event} />
 </Admin>;
 
 export default App;
