@@ -10,7 +10,9 @@ import {
     SelectInput,
     SimpleForm,
     TextField,
-    TextInput
+    TextInput,
+    ImageInput,
+    ImageField
 } from 'react-admin';
 import PersonIcon from "@material-ui/icons/Person";
 
@@ -26,6 +28,9 @@ const Speaker = {
                 <TextField source="name" />
                 <TextField source="title" />
                 {/*src, posterSrc*/}
+                {/*<ImageInput source="pictures" label="Related pictures" accept="image/*">*/}
+                {/*    <ImageField source="src" title="title" />*/}
+                {/*</ImageInput>*/}
                 <TextField source="about" />
                 <EditButton />
                 <DeleteButton />
