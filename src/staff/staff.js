@@ -22,12 +22,12 @@ const Title = ({ record }) => {
 
 const Staff = {
     list: (props) => (
-        <List {...props}>
+        <List {...props} bulkActionButtons={false}>
             <Datagrid>
                 <TextField source="id" />
                 <TextField source="name" />
                 <TextField source="title" />
-                <ImageField source="src" title="name" />
+                <ImageField source="photo.path" label="person photo" />
                 <EditButton />
                 <DeleteButton />
             </Datagrid>
@@ -38,9 +38,10 @@ const Staff = {
             <SimpleForm>
                 <TextInput source="name" />
                 <TextInput source="title" />
-                <ImageInput source="src" label="profile picture" accept="image/*">
-                    <ImageField source="src" title="title" />
+                <ImageInput source="src" label="person photo" accept="image/*">
+                    <ImageField />
                 </ImageInput>
+                <TextInput source="photo.path" />
             </SimpleForm>
         </Edit>
     ),

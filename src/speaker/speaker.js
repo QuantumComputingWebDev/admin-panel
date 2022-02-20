@@ -22,15 +22,13 @@ const Title = ({ record }) => {
 
 const Speaker = {
     list: (props) => (
-        <List {...props}>
+        <List {...props} bulkActionButtons={false}>
             <Datagrid>
                 <TextField source="id" />
                 <TextField source="name" />
                 <TextField source="title" />
-                {/*src, posterSrc*/}
-                {/*<ImageInput source="pictures" label="Related pictures" accept="image/*">*/}
-                {/*    <ImageField source="src" title="title" />*/}
-                {/*</ImageInput>*/}
+                <ImageField source="photo.path" label="person photo" />
+                <ImageField source="poster.path" label="poster photo" />
                 <TextField source="about" />
                 <EditButton />
                 <DeleteButton />
@@ -43,6 +41,12 @@ const Speaker = {
                 <TextInput source="name" />
                 <TextInput source="title" />
                 <TextInput multiline source="about" />
+                <ImageInput source="personSrc" label="person photo" accept="image/*">
+                    <ImageField/>
+                </ImageInput>
+                <ImageInput source="posterSrc" label="poster photo" accept="image/*">
+                    <ImageField/>
+                </ImageInput>
             </SimpleForm>
         </Edit>
     ),

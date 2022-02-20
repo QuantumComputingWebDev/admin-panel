@@ -4,15 +4,20 @@ const apiUrl = `${window.location.origin}/api/v1`;
 const httpClient = fetchUtils.fetchJson;
 
 const eventDataProvider = {
-    getList: (resource) => {
-        const url = `${apiUrl}/event/`;
-
-        return httpClient(url).then(({ headers, json }) => ({
-            data: json,
-            total: json.length
-        }));
-    },
-
+    getList: (resource) =>
+        httpClient(`${apiUrl}/event/`).then(({ headers, json }) => {
+            console.log(json)
+            const res = []
+            for(let day in json) {
+                for(let sp in day.speechs) {
+                    res.push({...sp, date: day.date})
+                }
+            }
+            return {
+                data: res,
+                total: res.length
+            }
+        }),
     create: (resource, params) => {
         return httpClient(`${apiUrl}/event/speech/${params.data.date.replaceAll('-', '/')}/`, {
             method: 'POST',

@@ -1,6 +1,7 @@
 import {fetchUtils} from "react-admin";
+import {apiUrl} from "../settings";
+import {uploadFile} from "../media/utils";
 
-const apiUrl = `${window.location.origin}/api/v1`;
 const httpClient = fetchUtils.fetchJson;
 
 const staffDataProvider = {
@@ -13,7 +14,6 @@ const staffDataProvider = {
         }));
     },
     create: (resource, params) => {
-        console.log(params)
         return httpClient(`${apiUrl}/person/`, {
             method: 'POST',
             body: JSON.stringify({...params.data, position: 1}),
@@ -21,23 +21,19 @@ const staffDataProvider = {
             data: { ...params.data, id: json.id},
         }))
     },
-    update: (resource, params) => {
-        console.log('update', params)
-        const formData  = new FormData();
-        formData.append("blah blah", params.data.src.rawFile)
-        fetch(`${apiUrl}/media/?gallery=0`, {
-            method: "POST",
-            body: formData
-        })
-            .then(res=>res.json())
-            .then(({src, id})=>(
-                httpClient(`${apiUrl}/person/${params.id}`, {
-                    method: 'PUT',
-                    body: JSON.stringify({...params.data, photoId: id, position: 1}),
-                }).then(({ json }) => ({
-                    data: { ...params.data, id: json.id},
-                }))
-            ))
+    update: async (resource, params) => {
+        const props = {}
+        if(params.data.src) {
+            await uploadFile({rawFile: params.data.src.rawFile, isGallery: 0})
+                .then(({id, src})=>{props.photoId = id})
+        }
+        const res = (await httpClient(`${apiUrl}/person/${params.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({...params.data, ...props, position: 1}),
+        })).json
+        return {
+            data: {...params.data, id: res.id},
+        }
     },
 }
 
