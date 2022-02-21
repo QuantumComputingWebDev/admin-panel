@@ -40,6 +40,8 @@ const Event = {
                 <TextField source="id" />
                 <DateField source="date" />
                 <TextField source="title" />
+                <TextField source="startTime" />
+                <TextField source="endTime" />
                 <TextField source="speaker.name" label="speaker" />
                 <TextField source="briefDescription" />
                 <TextField source="description" />
@@ -59,6 +61,8 @@ const Event = {
                 <ReferenceInput source="speakerId" reference="speaker">
                     <SelectInput optionText={<SpeakerAvatar />} />
                 </ReferenceInput>
+                <TextInput source="startTime" />
+                <TextInput source="endTime" />
                 <TextInput source="briefDescription" />
                 <TextInput source="description" />
                 <ImageInput source="posterSrc" label="poster photo" accept="image/*">
@@ -70,8 +74,8 @@ const Event = {
     create: (props) => (
         <Create {...props}>
             <SimpleForm>
-                <ReferenceInput source="date" reference="day">
-                    <SelectInput optionText="date" optionValue="date" />
+                <ReferenceInput source="day" reference="day">
+                    <SelectInput optionText="date" />
                 </ReferenceInput>
                 <TextInput source="title" />
                 <ReferenceInput source="speakerId" reference="speaker">
