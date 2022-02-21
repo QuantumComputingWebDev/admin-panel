@@ -40,9 +40,7 @@ const Event = {
                 <TextField source="id" />
                 <DateField source="date" />
                 <TextField source="title" />
-                <ReferenceField source="speaker" reference="person">
-                    <TextField source="name" />
-                </ReferenceField>
+                <TextField source="speaker.name" label="speaker" />
                 <TextField source="briefDescription" />
                 <TextField source="description" />
                 <ImageField source="poster.path" label="poster photo" />
@@ -54,9 +52,11 @@ const Event = {
     edit: (props) => (
         <Edit title={<Title />} {...props}>
             <SimpleForm>
-                <DateInput source="date" />
+                <ReferenceInput source="date" reference="day">
+                    <SelectInput optionText="date" optionValue="date" />
+                </ReferenceInput>
                 <TextInput source="title" />
-                <ReferenceInput source="speaker" reference="speaker">
+                <ReferenceInput source="speakerId" reference="speaker">
                     <SelectInput optionText={<SpeakerAvatar />} />
                 </ReferenceInput>
                 <TextInput source="briefDescription" />
@@ -70,9 +70,11 @@ const Event = {
     create: (props) => (
         <Create {...props}>
             <SimpleForm>
-                <DateInput source="date" />
+                <ReferenceInput source="date" reference="day">
+                    <SelectInput optionText="date" optionValue="date" />
+                </ReferenceInput>
                 <TextInput source="title" />
-                <ReferenceInput source="speaker" reference="speaker">
+                <ReferenceInput source="speakerId" reference="speaker">
                     <SelectInput optionText={<SpeakerAvatar />} />
                 </ReferenceInput>
             </SimpleForm>

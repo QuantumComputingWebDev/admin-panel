@@ -5,10 +5,12 @@ const httpClient = fetchUtils.fetchJson;
 
 const dayDataProvider = {
     getList: (resource) =>
-        httpClient(`${apiUrl}/event/`).then(({ headers, json }) => ({
-            data: json,
-            total: json.length
-        })),
+        httpClient(`${apiUrl}/event/`).then(({ headers, json }) => {
+            return {
+                data: json,
+                total: json.length
+            }
+        }),
     getOne: (resource, params) =>
         httpClient(`${apiUrl}/${resource}/${params.data.date.replaceAll('-', '/')}`).then(({ json }) => ({
             data: json,
