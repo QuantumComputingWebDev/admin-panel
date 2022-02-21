@@ -19,6 +19,8 @@ const eventDataProvider = {
             }
         }),
     create: (resource, params) => {
+        params.data.speakerId = params.data.speaker;
+        delete params.data.speaker;
         return httpClient(`${apiUrl}/event/speech/${params.data.date.replaceAll('-', '/')}/`, {
             method: 'POST',
             body: JSON.stringify(params.data),
