@@ -22,11 +22,13 @@ export default {
             })
     },
     logout: () => {
+        cookies.remove('auth')
         localStorage.removeItem('username');
         return Promise.resolve();
     },
     checkError: ({ status }) => {
         if (status === 401 || status === 403) {
+            cookies.remove('auth')
             localStorage.removeItem('username');
             return Promise.reject();
         }
