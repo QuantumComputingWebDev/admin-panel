@@ -41,7 +41,6 @@ const Staff = {
                 <ImageInput source="src" label="person photo" accept="image/*">
                     <ImageField />
                 </ImageInput>
-                <TextInput source="photo.path" />
             </SimpleForm>
         </Edit>
     ),

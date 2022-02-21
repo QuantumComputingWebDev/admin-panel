@@ -27,11 +27,10 @@ const dayDataProvider = {
             data: { ...params.data, id: json.id },
         }))
     },
-    delete: (resource, params) => {
+    delete: (resource, params) =>
         httpClient(`${apiUrl}/${resource}/${params.previousData.date.replaceAll('-', '/')}`, {
             method: 'DELETE',
-        }).then(({json}) => ({data: json}))
-    },
+        }).then(({json}) => ({data: json})),
 };
 
 export default dayDataProvider;
