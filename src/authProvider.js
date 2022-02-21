@@ -11,7 +11,7 @@ export default {
             then(async (response) => {
                 if (response.status != 200) throw new Error('invalid username or password')
                 const data = await response.text();
-                cookies.set('auth', data);
+                cookies.set('auth', data, {path: '/'});
                 localStorage.setItem('username', username);
                 localStorage.setItem('auth', data)
                 console.log(response)
